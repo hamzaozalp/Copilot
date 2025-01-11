@@ -1,0 +1,34 @@
+﻿﻿@model List<AcunmedyaAkademiPortfolio.Models.TblExperience>
+
+<div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+    <h3 class="resume-title">Profesyonel Deneyimler</h3>
+
+    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+    
+        <div class="resume-item">
+            <h4>Yazılım Geliştirici</h4>
+            <h5>2024-Halen</h5>
+            <p><em>İstanbul,Türkiye</em></p>
+            <ul>
+                <li>A Bankası uygulaması</li>
+                <li>B Restoran uygulaması</li>
+                <li>C Havayolu şirketi bilet alma,check-in uygulaması</li>
+                
+            </ul>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="resume-item">
+                <h4>@item.tİTLE</h4>
+                <h5>@item.Period</h5>
+
+                <ul>
+                    <li>@item.Description</li>
+                </ul>
+            </div>
+        }
+        <!-- Edn Resume Item -->
+        <!-- Edn Resume Item -->
+
+    </div>
