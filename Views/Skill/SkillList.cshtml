@@ -1,0 +1,39 @@
+﻿@model List<AcunmedyaAkademiPortfolio.Models.TblSkıll>
+
+@{
+    ViewBag.Title = "SkillList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>Yetenek Id</th>
+        <th>Başlık</th>
+        <th>Yetkinlik</th>
+
+
+        <th>Güncelle</th>
+        <th>Sil</th>
+    </tr>
+
+    <h2>Yetenekler</h2>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SkıllId</td>
+            <td>@item.SkıllTable</td>
+            <td>@item.SkıllValue</td>
+            <td><a href="/Skill/UpdateSkill/@item.SkıllId" class="btn btn-success">Güncelle</a></td>
+            <td><a href="/Skill/DeleteSkill/@item.SkıllId" class="btn btn-danger">Sil</a></td>
+        </tr>
+    }
+</table>
+
+<a href="/Skill/CreateSkill/" class="btn btn-primary">Yeni Yetenek Girişi</a>
+
+
+
+
+

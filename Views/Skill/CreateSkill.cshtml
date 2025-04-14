@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "CreateSkill";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h2>Yeni Yetenek Girişi</h2>
+<form method="post">
+    <label>Yetenek Adı</label>
+    <input type="text" class="form-control" name="SkıllTable" style="border:solid" />
+    <br />
+
+    <label>Yetkinlik Seviyesi 1-100</label>
+    <input type="text" class="form-control" name="SkıllValue" id="skillValue" style="border:solid" />
+    </br>
+    <button type="submit" class="btn btn-primary">Yetenek Ekle</button>
+    </br>
+    <span id="error"></span>
+
+</form>
+

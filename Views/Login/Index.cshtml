@@ -1,0 +1,85 @@
+﻿@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<style>
+    body {
+        /* Arka plan resmi ve ayarlar */
+        background: url('~/sidebar-02/images/pexels-lum3n-44775-406014') no-repeat center center fixed;
+        background-image: url('../../sidebar-02/images/pexels-lum3n-44775-406014.jpg');
+        background-size: cover;
+        font-family: 'Arial', sans-serif;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .login-container {
+        max-width: 400px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        margin-top: 10%;
+    }
+
+    .alert {
+        text-align: center;
+        font-size: 1.3rem;
+        background-color: #007bff;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        margin-bottom: 15px;
+        border-radius: 5px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 1.1rem;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border: none;
+    }
+
+    .btn-dark {
+        background-color: #343a40;
+        border: none;
+    }
+
+        .btn-info:hover, .btn-dark:hover {
+            opacity: 0.9;
+        }
+
+    /* Centering the form and the background */
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+</style>
+
+<form method="post">
+    <div class="container">
+        <div class="login-container">
+            <div class="alert alert-primary">
+                <strong>Yönetim Paneline Giriş Yap</strong>
+            </div>
+            <label for="username">Kullanıcı Adı</label>
+            <input type="text" id="username" name="Username" class="form-control" placeholder="Kullanıcı Adınızı Girin" />
+
+            <label for="password">Şifre</label>
+            <input type="password" id="password" name="Password" class="form-control" placeholder="Şifrenizi Girin" />
+
+            <br />
+            <button type="submit" class="btn btn-info">Giriş Yap</button>
+            <a href="/Register/Index/" class="btn btn-dark">Kayıt Ol</a>
+        </div>
+    </div>
+</form>

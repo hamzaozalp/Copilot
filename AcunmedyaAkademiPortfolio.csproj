@@ -128,12 +128,25 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Content\style.asmx.cs">
+      <DependentUpon>style.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\Admin.cs" />
     <Compile Include="Controllers\AdminLayoutController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\EducationController.cs" />
+    <Compile Include="Controllers\ExperienceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogOutController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\SkillController.cs" />
+    <Compile Include="Controllers\SocialMediaController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
+    <Compile Include="Controllers\TestimonialController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -152,10 +165,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TblCategory.cs">
+    <Compile Include="Models\TblAdmin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TblCategories.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblEducation.cs">
@@ -173,7 +195,13 @@
     <Compile Include="Models\TblService.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TbLSkıll.cs">
+    <Compile Include="Models\TblSkıll.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TblSocialMedia.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TblStatistics.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblTestimonial.cs">
@@ -198,13 +226,14 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\style.asmx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -291,6 +320,7 @@
     <Content Include="MyResume-1.0.0\assets\vendor\typed.js\typed.umd.js" />
     <Content Include="MyResume-1.0.0\assets\vendor\waypoints\noframework.waypoints.js" />
     <Content Include="MyResume-1.0.0\forms\Readme.txt" />
+    <Content Include="MyResume-1.0.0\index 1.html" />
     <Content Include="MyResume-1.0.0\index.html" />
     <Content Include="MyResume-1.0.0\portfolio-details.html" />
     <Content Include="MyResume-1.0.0\Readme.txt" />
@@ -302,13 +332,6 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="MyResume-1.0.0\.DS_Store" />
     <Content Include="MyResume-1.0.0\assets\.DS_Store" />
     <Content Include="MyResume-1.0.0\assets\vendor\aos\aos.js.map" />
@@ -344,6 +367,13 @@
     <Content Include="MyResume-1.0.0\assets\vendor\typed.js\typed.module.js.map" />
     <Content Include="MyResume-1.0.0\assets\vendor\typed.js\typed.umd.js.map" />
     <Content Include="MyResume-1.0.0\forms\contact.php" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -362,6 +392,7 @@
     <Content Include="sidebar-02\css\bootstrap\utilities\_stretched-link.css" />
     <Content Include="sidebar-02\css\bootstrap\_media.css" />
     <Content Include="sidebar-02\css\style.css" />
+    <Content Include="sidebar-02\images\pexels-lum3n-44775-406014.jpg" />
     <Content Include="sidebar-02\index.html" />
     <Content Include="sidebar-02\js\bootstrap.min.js" />
     <Content Include="sidebar-02\js\jquery.min.js" />
@@ -496,11 +527,34 @@
     <Content Include="Views\Default\PartialAbout.cshtml" />
     <Content Include="Views\Default\PartialSkill.cshtml" />
     <Content Include="Views\Default\PartialExperience.cshtml" />
+    <Content Include="Views\Skill\SkillList.cshtml" />
+    <Content Include="Views\Skill\CreateSkill.cshtml" />
+    <Content Include="Views\Skill\UpdateSkill.cshtml" />
+    <Content Include="Views\Experience\ExperienceList.cshtml" />
+    <Content Include="Views\Experience\UpdateExperience.cshtml" />
+    <Content Include="Views\Experience\CreateExperience.cshtml" />
+    <Content Include="Views\Testimonial\TestimonialList.cshtml" />
+    <Content Include="Views\Testimonial\CreateTestimonial.cshtml" />
+    <Content Include="Views\Testimonial\UpdateTestimonial.cshtml" />
+    <Content Include="Views\Statistics\StatisticList.cshtml" />
+    <Content Include="Views\SocialMedia\SocialMediaList.cshtml" />
+    <Content Include="Views\SocialMedia\CreateSocialMedia.cshtml" />
+    <Content Include="Views\SocialMedia\UpdateSocialMedia.cshtml" />
+    <Content Include="Views\Education\EducationList.cshtml" />
+    <Content Include="Views\Education\CreateEducation.cshtml" />
+    <Content Include="Views\Education\UpdateEducation.cshtml" />
+    <Content Include="Views\Statistics\CreateStatistic.cshtml" />
+    <Content Include="Views\Statistics\UpdateStatistic.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Project\ProjectList.cshtml" />
+    <Content Include="Views\Project\CreateProject.cshtml" />
+    <Content Include="Views\Project\UpdateProject.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Education\" />
-    <Folder Include="Views\Statistics\" />
+    <Folder Include="Views\About\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -4,17 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="16eb2206561444ac8df5f28c0bc692eb" Name="Diagram1" ZoomLevel="86">
+      <Diagram DiagramId="0dc40496706f4de6ba19abfe4fa9c323" Name="Diagram1">
         <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblCategory" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblCategories" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblEducation" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblMessage" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblProject" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblService" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblTestimonial" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblExperience" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblService" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblSkıll" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblStatistics" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblTestimonial" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblExperience" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="DbAcunMedyaAkademi1Model.FK_TblProject_TblCategory" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblMessage" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TbLSkıll" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblSocialMedia" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DbAcunMedyaAkademi1Model.TblAdmin" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

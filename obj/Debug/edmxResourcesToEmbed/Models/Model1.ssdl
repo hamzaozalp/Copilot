@@ -10,7 +10,15 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <EntityType Name="TblCategory">
+  <EntityType Name="TblAdmin">
+    <Key>
+      <PropertyRef Name="Admins" />
+    </Key>
+    <Property Name="Admins" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Username" Type="nchar" MaxLength="10" />
+    <Property Name="Password" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="TblCategories">
     <Key>
       <PropertyRef Name="CategoryId" />
     </Key>
@@ -27,14 +35,12 @@
     <Property Name="Period" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="varchar" MaxLength="300" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="TblExperience">
     <Key>
       <PropertyRef Name="ExperienceId" />
     </Key>
     <Property Name="ExperienceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="tİTLE" Type="nvarchar" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
     <Property Name="Period" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="250" />
   </EntityType>
@@ -68,13 +74,29 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
     <Property Name="Description" Type="nvarchar" MaxLength="250" />
     <Property Name="IconUrl" Type="nvarchar" MaxLength="250" />
   </EntityType>
-  <EntityType Name="TbLSkıll">
+  <EntityType Name="TblSkıll">
     <Key>
       <PropertyRef Name="SkıllId" />
     </Key>
     <Property Name="SkıllId" Type="int" Nullable="false" />
     <Property Name="SkıllTable" Type="nvarchar" MaxLength="50" />
     <Property Name="SkıllValue" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="TblSocialMedia">
+    <Key>
+      <PropertyRef Name="Social MediaId" />
+    </Key>
+    <Property Name="Social MediaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SocialMediaLink" Type="nvarchar" MaxLength="255" />
+    <Property Name="SocialMediaIcon" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TblStatistics">
+    <Key>
+      <PropertyRef Name="StatisticId" />
+    </Key>
+    <Property Name="StatisticId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" />
+    <Property Name="Value" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="TblTestimonial">
     <Key>
@@ -87,10 +109,10 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
     <Property Name="ImageUrl" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_TblProject_TblCategory">
-    <End Role="TblCategory" Type="Self.TblCategory" Multiplicity="0..1" />
+    <End Role="TblCategories" Type="Self.TblCategories" Multiplicity="0..1" />
     <End Role="TblProject" Type="Self.TblProject" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="TblCategory">
+      <Principal Role="TblCategories">
         <PropertyRef Name="CategoryId" />
       </Principal>
       <Dependent Role="TblProject">
@@ -98,25 +120,52 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="DbAcunMedyaAkademi1ModelStoreContainer">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TblCategory" EntityType="Self.TblCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblAdmin" EntityType="Self.TblAdmin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblCategories" EntityType="Self.TblCategories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblEducation" EntityType="Self.TblEducation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblExperience" EntityType="Self.TblExperience" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblMessage" EntityType="Self.TblMessage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblProject" EntityType="Self.TblProject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblService" EntityType="Self.TblService" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TbLSkıll" EntityType="Self.TbLSkıll" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblSkıll" EntityType="Self.TblSkıll" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblSocialMedia" EntityType="Self.TblSocialMedia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblStatistics" EntityType="Self.TblStatistics" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblTestimonial" EntityType="Self.TblTestimonial" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TblExperience" EntityType="Self.TblExperience" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [TblExperience].[ExperienceId] AS [ExperienceId], 
-    [TblExperience].[tİTLE] AS [tİTLE], 
-    [TblExperience].[Period] AS [Period], 
-    [TblExperience].[Description] AS [Description]
-    FROM [dbo].[TblExperience] AS [TblExperience]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK_TblProject_TblCategory" Association="Self.FK_TblProject_TblCategory">
-      <End Role="TblCategory" EntitySet="TblCategory" />
+      <End Role="TblCategories" EntitySet="TblCategories" />
       <End Role="TblProject" EntitySet="TblProject" />
     </AssociationSet>
   </EntityContainer>

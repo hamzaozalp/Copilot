@@ -18,3 +18,8 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.mor-bolum {
+    background-color: #F5F5F5; /* Arka plan rengini açarak metni daha görünür yapabiliriz */
+    color: #000000; /* Metin rengini koyu yaparak kontrastı artırabiliriz */
+}

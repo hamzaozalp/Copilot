@@ -15,7 +15,7 @@ namespace AcunmedyaAkademiPortfolio.Models
     public partial class TblExperience
     {
         public int ExperienceId { get; set; }
-        public string tİTLE { get; set; }
+        public string Title { get; set; }
         public string Period { get; set; }
         public string Description { get; set; }
     }

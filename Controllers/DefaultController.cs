@@ -10,7 +10,7 @@ namespace AcunmedyaAkademiPortfolio.Controllers
     public class DefaultController : Controller
     {
 
-        DbAcunMedyaAkademi1Entities db = new DbAcunMedyaAkademi1Entities();
+        DbAcunMedyaAkademi1Entities1 db = new DbAcunMedyaAkademi1Entities1();
 
         public PartialViewResult PartialExperience()
         {

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DbAcunMedyaAkademi1ModelStoreContainer" CdmEntityContainer="DbAcunMedyaAkademi1Entities">
+  <EntityContainerMapping StorageEntityContainer="DbAcunMedyaAkademi1ModelStoreContainer" CdmEntityContainer="DbAcunMedyaAkademi1Entities1">
     <EntitySetMapping Name="sysdiagrams">
       <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
@@ -12,9 +12,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TblCategory">
-      <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblCategory">
-        <MappingFragment StoreEntitySet="TblCategory">
+    <EntitySetMapping Name="TblCategories">
+      <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblCategories">
+        <MappingFragment StoreEntitySet="TblCategories">
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
           <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
         </MappingFragment>
@@ -28,6 +28,18 @@
           <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
           <ScalarProperty Name="Period" ColumnName="Period" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblMessage">
+      <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblMessage">
+        <MappingFragment StoreEntitySet="TblMessage">
+          <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+          <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+          <ScalarProperty Name="SenderEmail" ColumnName="SenderEmail" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -52,6 +64,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TblSkıll">
+      <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblSkıll">
+        <MappingFragment StoreEntitySet="TblSkıll">
+          <ScalarProperty Name="SkıllId" ColumnName="SkıllId" />
+          <ScalarProperty Name="SkıllTable" ColumnName="SkıllTable" />
+          <ScalarProperty Name="SkıllValue" ColumnName="SkıllValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblStatistics">
+      <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblStatistics">
+        <MappingFragment StoreEntitySet="TblStatistics">
+          <ScalarProperty Name="StatisticId" ColumnName="StatisticId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="TblTestimonial">
       <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblTestimonial">
         <MappingFragment StoreEntitySet="TblTestimonial">
@@ -67,30 +97,51 @@
       <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblExperience">
         <MappingFragment StoreEntitySet="TblExperience">
           <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
-          <ScalarProperty Name="tİTLE" ColumnName="tİTLE" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Period" ColumnName="Period" />
           <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TblMessage">
-      <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblMessage">
-        <MappingFragment StoreEntitySet="TblMessage">
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Detail" ColumnName="Detail" />
-          <ScalarProperty Name="Subject" ColumnName="Subject" />
-          <ScalarProperty Name="SenderEmail" ColumnName="SenderEmail" />
-          <ScalarProperty Name="SenderName" ColumnName="SenderName" />
-          <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+    <EntitySetMapping Name="TblSocialMedia">
+      <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblSocialMedia">
+        <MappingFragment StoreEntitySet="TblSocialMedia">
+          <ScalarProperty Name="SocialMediaIcon" ColumnName="SocialMediaIcon" />
+          <ScalarProperty Name="SocialMediaLink" ColumnName="SocialMediaLink" />
+          <ScalarProperty Name="Social_MediaId" ColumnName="Social MediaId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TbLSkıll">
-      <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TbLSkıll">
-        <MappingFragment StoreEntitySet="TbLSkıll">
-          <ScalarProperty Name="SkıllValue" ColumnName="SkıllValue" />
-          <ScalarProperty Name="SkıllTable" ColumnName="SkıllTable" />
-          <ScalarProperty Name="SkıllId" ColumnName="SkıllId" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DbAcunMedyaAkademi1Model.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DbAcunMedyaAkademi1Model.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="TblAdmin">
+      <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblAdmin">
+        <MappingFragment StoreEntitySet="TblAdmin">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Admins" ColumnName="Admins" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,11 +1,10 @@
-﻿﻿@model List<AcunmedyaAkademiPortfolio.Models.TblCategory>
-
+﻿@model List<AcunmedyaAkademiPortfolio.Models.TblCategories> 
 
 @{
     ViewBag.Title = "CategoryList";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
-
+    
 <h3>Hamza Özalp<h3>
 
 <table class="table table-bordered">
@@ -13,7 +12,7 @@
         <th>Kategori Id</th>
         <th>Kategori Adı</th>
         <th>Sil</th>
-        <th>Güncelle</th>
+        <th>Güncelle</th>   
     </tr>
 
     @foreach (var item in Model)

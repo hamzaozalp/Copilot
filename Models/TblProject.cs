@@ -20,6 +20,6 @@ namespace AcunmedyaAkademiPortfolio.Models
         public string ImageUrl { get; set; }
         public Nullable<int> CategoryId { get; set; }
     
-        public virtual TblCategory TblCategory { get; set; }
+        public virtual TblCategories TblCategories { get; set; }
     }
 }

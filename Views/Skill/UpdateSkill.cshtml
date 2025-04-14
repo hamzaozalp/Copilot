@@ -1,0 +1,30 @@
+﻿﻿@model  AcunmedyaAkademiPortfolio.Models.TblSkıll
+
+@{
+    ViewBag.Title = "UpdateSkill";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h2>Yetenek Güncelleme Sayfası</h2>
+<form method="post">
+    <label>Yetenek Id</label>
+    @Html.TextBoxFor(x => x.SkıllId, new
+    {
+        @class = "form-control",
+        @readonly = "readonly"
+    })       <br />
+    <label>Yetenek Adı</label>
+    @Html.TextBoxFor(x => x.SkıllTable, new { @class = "form-control" })
+    <br />
+
+    <label>Yetkinlik Seviyesi</label>
+
+    @Html.TextBoxFor(x => x.SkıllValue, new { @class = "form-control" })
+    <span id="validationMessage" class="text-danger"></span>
+    <span id="error"></span>
+    @Html.ValidationMessageFor(m => m.SkıllValue)
+
+    <button class="btn btn-success">Yeteneği Güncelle</button>
+
+
+</form>

@@ -6,76 +6,29 @@
         </button>
     </div>
     <div class="p-4 pt-5">
-        <h1><a href="index.html" class="logo">Hamza Özalp</a></h1>
+        <h1><a href="index.html" class="logo">Admin</a></h1>
         <ul class="list-unstyled components mb-5">
-
-
-
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>Hamza Özalp</title>
-            </head>
-            <body>
-                <ul class="list-unstyled components mb-5">
-                    <li><a href="https://www.orneksite.com/dashboard">Dashboard</a></li>
-                    <li><a href="https://www.orneksite.com/egitim-hayatim">Eğitim Hayatım</a></li>
-                    <li><a href="https://www.orneksite.com/deneyimlerim">Deneyimlerim</a></li>
-                    <li><a href="https://www.orneksite.com/yeteneklerim">Yeteneklerim</a></li>
-                    <li><a href="https://www.orneksite.com/gelen-mesajlar">Gelen Mesajlar</a></li>
-                    <li><a href="https://www.orneksite.com/sosyal-medya">Sosyal Medya</a></li>
-                    <li><a href="https://www.orneksite.com/referanslarim">Referanslarım</a></li>
-                    <li><a href="https://www.orneksite.com/kategoriler">Kategoriler</a></li>
-                    <li><a href="https://www.orneksite.com/projelerim">Projelerim</a></li>
-                    <li><a href="https://www.orneksite.com/istatistikler">İstatistikler</a></li>
-                    <li><a href="https://www.orneksite.com/siteye-git">Siteye Git</a></li>
-                    <li><a href="https://www.orneksite.com/cikis-yap">Çıkış Yap</a></li>
-
-                </ul>
-            </body>
-        </html>
-
-        @*
-
-                    <li><a href="!DOCTYPE.html">Eğitim Hayatım</a></li>
-    <li><a href="!DOCTYPE.html">Deneyimlerim</a></li>
-    <li><a href="!DOCTYPE.html">Yeteneklerim</a></li>
-    <li><a href="!DOCTYPE.html">Gelen Mesajlar</a></li>
-    <li><a href="!DOCTYPE.html">Sosyal Medya</a></li>
-    <li><a href="referanslarım.html">Referanslarım</a></li>
-    <li><a href="kategoriler.html">Kategoriler</a></li>
-    <li><a href="projelerim.html">Projelerim</a></li>
-    <li><a href="istatistikler.html">İstatistikler</a></li>
-    <li><a href="siteye_git.html">Siteye Git</a></li>
-    <li><a href="çikiş_yap.html">Çıkış Yap</a></li>
-
-        *@
-
-
-        @*
-
-       <li><a href="#">Deneyimlerim</a></li>
-    <li><a href="#">Yeteneklerim</a></li>
-    <li><a href="#">Gelen Mesajlar</a></li>
-    <li><a href="#">Sosyal Medya</a></li>
-    <li><a href="#">Referanslarım</a></li>
-    <li><a href="#">Kategoriler</a></li>
-    <li><a href="#">Projelerim</a></li>
-    <li><a href="#">İstatistikler</a></li>
-    <li><a href="#">Siteye Git</a></li>
-    <li><a href="#">Çıkış Yap</a></li>
-
-        *@
-
-
+  
+            <li><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+            <li><a href="@Url.Action("EducationList","Education")">Eğitim Hayatım</a></li>
+            <li><a href="@Url.Action("ExperienceList", "Experience")">Deneyimlerim</a></li>
+            <li><a href="@Url.Action("SkillList", "Skill")">Yeteneklerim</a></li>
+            <li><a href="@Url.Action("SocialMediaList", "SocialMedia")">Sosyal Medya</a></li>
+            <li><a href="@Url.Action("TestimonialList", "Testimonial")">Referanslarım</a></li>
+            <li><a href="@Url.Action("CategoryList", "Category")">Kategoriler</a></li>
+            <li><a href="@Url.Action("ProjectList", "Project")">Projelerim</a></li>
+            <li><a href="@Url.Action("StatisticList", "Statistics")">İstatistikler</a></li>
+            <li><a href="@Url.Action("Index", "Default")">Siteye Git</a></li>
+            <li><a href="@Url.Action("Index", "Login")">Çıkış Yap</a></li>
         </ul>
 
+
         <div class="mb-5">
-            <h3 class="h6">Bültene Üye Ol</h3>
+            <h3 class="h6">Subscribe for newsletter</h3>
             <form action="#" class="colorlib-subscribe-form">
                 <div class="form-group d-flex">
                     <div class="icon"><span class="icon-paper-plane"></span></div>
-                    <input type="text" class="form-control" placeholder="E-mail adresini giriniz">
+                    <input type="text" class="form-control" placeholder="Enter Email Address">
                 </div>
             </form>
         </div>
@@ -84,7 +37,7 @@
             <p>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 Copyright &copy;
-                <script>document.write(new Date().getFullYear());</script> Tüm Hakları Saklıdır | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
         </div>

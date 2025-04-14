@@ -15,7 +15,15 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="TblCategory">
+        <EntityType Name="TblAdmin">
+          <Key>
+            <PropertyRef Name="Admins" />
+          </Key>
+          <Property Name="Admins" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Username" Type="nchar" MaxLength="10" />
+          <Property Name="Password" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TblCategories">
           <Key>
             <PropertyRef Name="CategoryId" />
           </Key>
@@ -32,14 +40,12 @@
           <Property Name="Period" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="300" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TblExperience">
           <Key>
             <PropertyRef Name="ExperienceId" />
           </Key>
           <Property Name="ExperienceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tİTLE" Type="nvarchar" MaxLength="100" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
           <Property Name="Period" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
         </EntityType>
@@ -73,13 +79,29 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
           <Property Name="IconUrl" Type="nvarchar" MaxLength="250" />
         </EntityType>
-        <EntityType Name="TbLSkıll">
+        <EntityType Name="TblSkıll">
           <Key>
             <PropertyRef Name="SkıllId" />
           </Key>
           <Property Name="SkıllId" Type="int" Nullable="false" />
           <Property Name="SkıllTable" Type="nvarchar" MaxLength="50" />
           <Property Name="SkıllValue" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TblSocialMedia">
+          <Key>
+            <PropertyRef Name="Social MediaId" />
+          </Key>
+          <Property Name="Social MediaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SocialMediaLink" Type="nvarchar" MaxLength="255" />
+          <Property Name="SocialMediaIcon" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TblStatistics">
+          <Key>
+            <PropertyRef Name="StatisticId" />
+          </Key>
+          <Property Name="StatisticId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Value" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="TblTestimonial">
           <Key>
@@ -92,10 +114,10 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
           <Property Name="ImageUrl" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_TblProject_TblCategory">
-          <End Role="TblCategory" Type="Self.TblCategory" Multiplicity="0..1" />
+          <End Role="TblCategories" Type="Self.TblCategories" Multiplicity="0..1" />
           <End Role="TblProject" Type="Self.TblProject" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TblCategory">
+            <Principal Role="TblCategories">
               <PropertyRef Name="CategoryId" />
             </Principal>
             <Dependent Role="TblProject">
@@ -103,25 +125,52 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="DbAcunMedyaAkademi1ModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TblCategory" EntityType="Self.TblCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblAdmin" EntityType="Self.TblAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblCategories" EntityType="Self.TblCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblEducation" EntityType="Self.TblEducation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblExperience" EntityType="Self.TblExperience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblMessage" EntityType="Self.TblMessage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblProject" EntityType="Self.TblProject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblService" EntityType="Self.TblService" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TbLSkıll" EntityType="Self.TbLSkıll" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblSkıll" EntityType="Self.TblSkıll" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblSocialMedia" EntityType="Self.TblSocialMedia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblStatistics" EntityType="Self.TblStatistics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblTestimonial" EntityType="Self.TblTestimonial" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TblExperience" EntityType="Self.TblExperience" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TblExperience].[ExperienceId] AS [ExperienceId], 
-    [TblExperience].[tİTLE] AS [tİTLE], 
-    [TblExperience].[Period] AS [Period], 
-    [TblExperience].[Description] AS [Description]
-    FROM [dbo].[TblExperience] AS [TblExperience]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_TblProject_TblCategory" Association="Self.FK_TblProject_TblCategory">
-            <End Role="TblCategory" EntitySet="TblCategory" />
+            <End Role="TblCategories" EntitySet="TblCategories" />
             <End Role="TblProject" EntitySet="TblProject" />
           </AssociationSet>
         </EntityContainer>
@@ -139,13 +188,13 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="TblCategory">
+        <EntityType Name="TblCategories">
           <Key>
             <PropertyRef Name="CategoryId" />
           </Key>
           <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TblProject" Relationship="Self.FK_TblProject_TblCategory" FromRole="TblCategory" ToRole="TblProject" />
+          <NavigationProperty Name="TblProject" Relationship="Self.FK_TblProject_TblCategory" FromRole="TblCategories" ToRole="TblProject" />
         </EntityType>
         <EntityType Name="TblEducation">
           <Key>
@@ -157,6 +206,17 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
           <Property Name="Period" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="TblMessage">
+          <Key>
+            <PropertyRef Name="MessageId" />
+          </Key>
+          <Property Name="MessageId" Type="Int32" Nullable="false" />
+          <Property Name="SenderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SenderEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Detail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
         <EntityType Name="TblProject">
           <Key>
             <PropertyRef Name="ProjectId" />
@@ -166,7 +226,7 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
           <Property Name="Desccription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CategoryId" Type="Int32" />
-          <NavigationProperty Name="TblCategory" Relationship="Self.FK_TblProject_TblCategory" FromRole="TblProject" ToRole="TblCategory" />
+          <NavigationProperty Name="TblCategories" Relationship="Self.FK_TblProject_TblCategory" FromRole="TblProject" ToRole="TblCategories" />
         </EntityType>
         <EntityType Name="TblService">
           <Key>
@@ -176,6 +236,22 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
           <Property Name="ServiceTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="IconUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TblSkıll">
+          <Key>
+            <PropertyRef Name="SkıllId" />
+          </Key>
+          <Property Name="SkıllId" Type="Int32" Nullable="false" />
+          <Property Name="SkıllTable" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SkıllValue" Type="Byte" />
+        </EntityType>
+        <EntityType Name="TblStatistics">
+          <Key>
+            <PropertyRef Name="StatisticId" />
+          </Key>
+          <Property Name="StatisticId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TblTestimonial">
           <Key>
@@ -192,15 +268,15 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
             <PropertyRef Name="ExperienceId" />
           </Key>
           <Property Name="ExperienceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tİTLE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Period" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_TblProject_TblCategory">
-          <End Role="TblCategory" Type="Self.TblCategory" Multiplicity="0..1" />
+          <End Role="TblCategories" Type="Self.TblCategories" Multiplicity="0..1" />
           <End Role="TblProject" Type="Self.TblProject" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TblCategory">
+            <Principal Role="TblCategories">
               <PropertyRef Name="CategoryId" />
             </Principal>
             <Dependent Role="TblProject">
@@ -208,46 +284,87 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DbAcunMedyaAkademi1Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DbAcunMedyaAkademi1Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="TblCategory" EntityType="Self.TblCategory" />
+          <EntitySet Name="TblCategories" EntityType="Self.TblCategories" />
           <EntitySet Name="TblEducation" EntityType="Self.TblEducation" />
+          <EntitySet Name="TblMessage" EntityType="Self.TblMessage" />
           <EntitySet Name="TblProject" EntityType="Self.TblProject" />
           <EntitySet Name="TblService" EntityType="Self.TblService" />
+          <EntitySet Name="TblSkıll" EntityType="Self.TblSkıll" />
+          <EntitySet Name="TblStatistics" EntityType="Self.TblStatistics" />
           <EntitySet Name="TblTestimonial" EntityType="Self.TblTestimonial" />
           <EntitySet Name="TblExperience" EntityType="Self.TblExperience" />
           <AssociationSet Name="FK_TblProject_TblCategory" Association="Self.FK_TblProject_TblCategory">
-            <End Role="TblCategory" EntitySet="TblCategory" />
+            <End Role="TblCategories" EntitySet="TblCategories" />
             <End Role="TblProject" EntitySet="TblProject" />
           </AssociationSet>
-          <EntitySet Name="TblMessage" EntityType="DbAcunMedyaAkademi1Model.TblMessage" />
-          <EntitySet Name="TbLSkıll" EntityType="DbAcunMedyaAkademi1Model.TbLSkıll" />
+          <EntitySet Name="TblSocialMedia" EntityType="DbAcunMedyaAkademi1Model.TblSocialMedia" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DbAcunMedyaAkademi1Model.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DbAcunMedyaAkademi1Model.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="TblAdmin" EntityType="DbAcunMedyaAkademi1Model.TblAdmin" />
         </EntityContainer>
-        <EntityType Name="TblMessage">
+        <EntityType Name="TblSocialMedia">
           <Key>
-            <PropertyRef Name="MessageId" />
+            <PropertyRef Name="Social_MediaId" />
           </Key>
-          <Property Name="MessageId" Type="Int32" Nullable="false" />
-          <Property Name="SenderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SenderEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Detail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Boolean" />
+          <Property Name="Social_MediaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SocialMediaLink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SocialMediaIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="TbLSkıll">
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="TblAdmin">
           <Key>
-            <PropertyRef Name="SkıllId" />
+            <PropertyRef Name="Admins" />
           </Key>
-          <Property Name="SkıllId" Type="Int32" Nullable="false" />
-          <Property Name="SkıllTable" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SkıllValue" Type="Byte" />
+          <Property Name="Admins" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DbAcunMedyaAkademi1ModelStoreContainer" CdmEntityContainer="DbAcunMedyaAkademi1Entities">
+        <EntityContainerMapping StorageEntityContainer="DbAcunMedyaAkademi1ModelStoreContainer" CdmEntityContainer="DbAcunMedyaAkademi1Entities1">
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -259,9 +376,9 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblCategory">
-            <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblCategory">
-              <MappingFragment StoreEntitySet="TblCategory">
+          <EntitySetMapping Name="TblCategories">
+            <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblCategories">
+              <MappingFragment StoreEntitySet="TblCategories">
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
               </MappingFragment>
@@ -275,6 +392,18 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
                 <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
                 <ScalarProperty Name="Period" ColumnName="Period" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMessage">
+            <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblMessage">
+              <MappingFragment StoreEntitySet="TblMessage">
+                <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+                <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+                <ScalarProperty Name="SenderEmail" ColumnName="SenderEmail" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -299,6 +428,24 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TblSkıll">
+            <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblSkıll">
+              <MappingFragment StoreEntitySet="TblSkıll">
+                <ScalarProperty Name="SkıllId" ColumnName="SkıllId" />
+                <ScalarProperty Name="SkıllTable" ColumnName="SkıllTable" />
+                <ScalarProperty Name="SkıllValue" ColumnName="SkıllValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblStatistics">
+            <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblStatistics">
+              <MappingFragment StoreEntitySet="TblStatistics">
+                <ScalarProperty Name="StatisticId" ColumnName="StatisticId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TblTestimonial">
             <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblTestimonial">
               <MappingFragment StoreEntitySet="TblTestimonial">
@@ -314,30 +461,51 @@ warning 6002: The table/view 'DbAcunMedyaAkademi1.dbo.TblExperience' does not ha
             <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblExperience">
               <MappingFragment StoreEntitySet="TblExperience">
                 <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
-                <ScalarProperty Name="tİTLE" ColumnName="tİTLE" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Period" ColumnName="Period" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblMessage">
-            <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblMessage">
-              <MappingFragment StoreEntitySet="TblMessage">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Detail" ColumnName="Detail" />
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="SenderEmail" ColumnName="SenderEmail" />
-                <ScalarProperty Name="SenderName" ColumnName="SenderName" />
-                <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+          <EntitySetMapping Name="TblSocialMedia">
+            <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblSocialMedia">
+              <MappingFragment StoreEntitySet="TblSocialMedia">
+                <ScalarProperty Name="SocialMediaIcon" ColumnName="SocialMediaIcon" />
+                <ScalarProperty Name="SocialMediaLink" ColumnName="SocialMediaLink" />
+                <ScalarProperty Name="Social_MediaId" ColumnName="Social MediaId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TbLSkıll">
-            <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TbLSkıll">
-              <MappingFragment StoreEntitySet="TbLSkıll">
-                <ScalarProperty Name="SkıllValue" ColumnName="SkıllValue" />
-                <ScalarProperty Name="SkıllTable" ColumnName="SkıllTable" />
-                <ScalarProperty Name="SkıllId" ColumnName="SkıllId" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DbAcunMedyaAkademi1Model.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DbAcunMedyaAkademi1Model.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DbAcunMedyaAkademi1Model.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="TblAdmin">
+            <EntityTypeMapping TypeName="DbAcunMedyaAkademi1Model.TblAdmin">
+              <MappingFragment StoreEntitySet="TblAdmin">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Admins" ColumnName="Admins" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

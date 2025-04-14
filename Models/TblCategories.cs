@@ -12,10 +12,10 @@ namespace AcunmedyaAkademiPortfolio.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TblCategory
+    public partial class TblCategories
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TblCategory()
+        public TblCategories()
         {
             this.TblProject = new HashSet<TblProject>();
         }
